@@ -1,50 +1,53 @@
 package com.formation.user;
 
-import java.text.MessageFormat;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.formation.service.Feedback;
 import com.formation.service.IFeedback;
+
+/**
+ * Class to make interactions with the user
+ */
 
 @Component
 public class UserInteraction {
+
 	@Autowired
-	private IFeedback feedback;
+	private IFeedback feedbackService;
 
-	public IFeedback getFeedback() {
-		return feedback;
+	public IFeedback getFeedbackService() {
+		return feedbackService;
 	}
 
-	public void setFeedback(IFeedback feedback) {
-		this.feedback = feedback;
+	public void setFeedbackService(IFeedback feedbackService) {
+		this.feedbackService = feedbackService;
 	}
 
-	/**
-	 * To say hello to the user named <code>name</code>
-	 *
-	 * @param name
-	 */
-	public void sayHello(String name) {
-		feedback.say(MessageFormat.format("Hello {0} !", name));
+	public void sayHello(String user) {
+		Feedback feedback = new Feedback(user, "Hello", LocalDateTime.now());
+		feedbackService.say(feedback);
 
 	}
 
-	/**
-	 * To say goodbye to the user named <code>name</code>
-	 *
-	 * @param name
-	 */
-	public void sayGoodBye(String name) {
-		feedback.say(MessageFormat.format("Goodbye {0} !", name));
-	}
-
-	public void additioner(Integer A, Integer B) {
-		feedback.calcul(A, B);
+	public void sayGoodBye(String user) {
 
 	}
 
-	public int sayTheCaptainAgeForAFamousThreeMast(float boatSize, int nbMast) {
-		return feedback.giveMeTheCaptainAge(boatSize, nbMast);
+	public void makeABetterHelloTo(String user) {
+
 	}
+
+	public void deleteFeedbackWith(String user) {
+
+	}
+
+	public List<Feedback> listWhatWasSaidToHimToday(String user) {
+		return null;
+
+	}
+
 }

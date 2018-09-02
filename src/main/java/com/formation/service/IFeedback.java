@@ -1,9 +1,19 @@
 package com.formation.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public interface IFeedback {
-	public void say(String something);
+	void say(Feedback newFeedback);
 
-	public void calcul(Integer A, Integer B);
+	void amend(Feedback updatedFeedback);
 
-	public int giveMeTheCaptainAge(float boatSize, int nbMast);
+	void unSayTo(String user);
+
+	List<Feedback> tellMeAll();
+
+	List<Feedback> tellMeWhatWasSaidToHimThisDay(String user, LocalDate day);
+
+	List<Feedback> listAllFeedbackWith(String user);
+
 }
